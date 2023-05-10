@@ -1,20 +1,14 @@
-import { formatDistanceToNow } from 'date-fns';
 import PropTypes from 'prop-types';
-import ArrowRightIcon from '@heroicons/react/24/solid/ArrowRightIcon';
-import EllipsisVerticalIcon from '@heroicons/react/24/solid/EllipsisVerticalIcon';
 import {
   Box,
-  Button,
   Card,
-  CardActions,
   CardHeader,
   Divider,
   IconButton,
   List,
   ListItem,
   ListItemAvatar,
-  ListItemText,
-  SvgIcon
+  ListItemText
 } from '@mui/material';
 
 export const OverviewLatestProducts = (props) => {
@@ -26,12 +20,12 @@ export const OverviewLatestProducts = (props) => {
       <List>
         {products.map((product, index) => {
           const hasDivider = index < products.length - 1;
-          const ago = `${product.updatedAt} em estoque`;
+          const ago = `${product.sum} em estoque`;
 
           return (
             <ListItem
               divider={hasDivider}
-              key={product.id}
+              key={product.produto_codigo}
             >
               <ListItemAvatar>
                 {
@@ -39,7 +33,7 @@ export const OverviewLatestProducts = (props) => {
                     ? (
                       <Box
                         component="img"
-                        src={product.image}
+                        src='/assets/products/product-1.png'
                         sx={{
                           borderRadius: 1,
                           height: 48,
@@ -60,7 +54,7 @@ export const OverviewLatestProducts = (props) => {
                 }
               </ListItemAvatar>
               <ListItemText
-                primary={product.name}
+                primary={product.nome}
                 primaryTypographyProps={{ variant: 'subtitle1' }}
                 secondary={ago}
                 secondaryTypographyProps={{ variant: 'body2' }}

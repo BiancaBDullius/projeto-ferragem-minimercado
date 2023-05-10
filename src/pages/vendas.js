@@ -12,13 +12,12 @@ const now = new Date();
 const data = [
   
   {
-    id: '5e8877da9a65442b11551975',
     
     cliente: 'Bianca Dullius',
     vendedor: 'Bianca Beppler',
     valor: '312',
-    data:'02-05-2023',
-    status:'Pago'
+    data_venda:'02-05-2023',
+    status:true,
   }
 ];
 

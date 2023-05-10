@@ -38,6 +38,9 @@ export const CustomersTable = (props) => {
                   Produto
                 </TableCell>
                 <TableCell>
+                  Local
+                </TableCell>
+                <TableCell>
                   Quantidade
                 </TableCell>
                 <TableCell>
@@ -71,11 +74,14 @@ export const CustomersTable = (props) => {
                       </Stack>
                     </TableCell>
                     <TableCell>
+                      {customer.e_local}
+                    </TableCell>
+                    <TableCell>
                       {customer.quantidade}
                     </TableCell>
                     
                     <TableCell>
-                      {customer.n_prateleira}
+                      {customer.numero_prateleira}
                     </TableCell>
                     <TableCell>
                       {customer.fornecedor}

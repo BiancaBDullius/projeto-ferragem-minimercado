@@ -54,7 +54,7 @@ export const CustomersTable = (props) => {
                 return (
                   <TableRow
                     hover
-                    key={customer.id}
+                    key={customer.cpf}
                     
                   >
                   

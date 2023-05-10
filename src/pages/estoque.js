@@ -16,10 +16,11 @@ const now = new Date();
 const data = [
   
   {
-    id: '5e8877da9a65442b11551975',
+    id: '1',
     nome: 'Prego',
+    e_local:"Minimercado",
     quantidade: '53',
-    n_prateleira: '12',
+    numero_prateleira: '12',
     fornecedor:'Fornecedor'
   }
 ];

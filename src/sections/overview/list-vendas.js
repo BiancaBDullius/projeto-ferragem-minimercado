@@ -35,7 +35,7 @@ export const OverviewLatestOrders = (props) => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  ID
+                  NOTA_FISCAL
                 </TableCell>
                 <TableCell>
                   CLIENTE
@@ -50,25 +50,25 @@ export const OverviewLatestOrders = (props) => {
             </TableHead>
             <TableBody>
               {orders.map((order) => {
-                const createdAt = format(order.createdAt, 'dd/MM/yyyy');
+                const createdAt = format(order.data_venda, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
                     hover
-                    key={order.id}
+                    key={order.nota_fiscal}
                   >
                     <TableCell>
-                      {order.ref}
+                      {order.nota_fiscal}
                     </TableCell>
                     <TableCell>
-                      {order.customer.name}
+                      {order.customer.cliente}
                     </TableCell>
                     <TableCell>
                       {createdAt}
                     </TableCell>
                     <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
-                        {order.status}
+                      <SeverityPill color={statusMap[order.status ? "pago" : "pendente"]}>
+                        {order.status ? "Pago":"Pendente"}
                       </SeverityPill>
                     </TableCell>
                   </TableRow>

@@ -57,7 +57,7 @@ export const CustomersTable = (props) => {
                 return (
                   <TableRow
                     hover
-                    key={customer.id}
+                    key={customer.nota_fiscal}
                     
                   >
                   
@@ -80,10 +80,10 @@ export const CustomersTable = (props) => {
                       R$ {customer.valor}
                     </TableCell>
                     <TableCell>
-                      {customer.data}
+                      {customer.data_venda}
                     </TableCell>
                     <TableCell>
-                      {customer.status}
+                      {customer.status ? "Pago" : "Pendente"}
                     </TableCell>
                   
                   </TableRow>

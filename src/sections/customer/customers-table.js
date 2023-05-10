@@ -37,14 +37,18 @@ export const CustomersTable = (props) => {
                 <TableCell>
                   Nome
                 </TableCell>
-                <TableCell>
-                  Email
-                </TableCell>
+                
                 <TableCell>
                   CPF
                 </TableCell>
                 <TableCell>
                   Telefone
+                </TableCell>
+                <TableCell>
+                  Endereço
+                </TableCell>
+                <TableCell>
+                  Pagamento pendente
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -71,14 +75,16 @@ export const CustomersTable = (props) => {
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
-                    </TableCell>
-                    
-                    <TableCell>
                       {customer.cpf}
                     </TableCell>
                     <TableCell>
                       {customer.phone}
+                    </TableCell>
+                    <TableCell>
+                      {customer.endereco}
+                    </TableCell>
+                    <TableCell>
+                      {customer.tem_compra_nao_paga ? "Sim" : "Não"}
                     </TableCell>
                   
                   </TableRow>
