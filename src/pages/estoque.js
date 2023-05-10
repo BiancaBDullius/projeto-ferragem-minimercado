@@ -10,20 +10,18 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/estoque-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
+import axios from 'axios'
 
+let data = [];
+
+const tabela = async () =>{
+  const res = await axios.get('https://trabalho-pbd.herokuapp.com/estoque')
+  const a = await res.data
+
+ data = a.estoque;
+}
+tabela()
 const now = new Date();
-
-const data = [
-  
-  {
-    id: '1',
-    nome: 'Prego',
-    e_local:"Minimercado",
-    quantidade: '53',
-    numero_prateleira: '12',
-    fornecedor:'Fornecedor'
-  }
-];
 
 const useCustomers = (page, rowsPerPage) => {
   return useMemo(
@@ -42,8 +40,9 @@ const useCustomerIds = (customers) => {
     [customers]
   );
 };
-
+tabela()
 const Page = () => {
+  tabela()
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const customers = useCustomers(page, rowsPerPage);

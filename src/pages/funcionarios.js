@@ -10,27 +10,21 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/funcionarios-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
+import axios from 'axios'
 
+let data = [];
+
+const tabela = async () =>{
+  const res = await axios.get('https://trabalho-pbd.herokuapp.com/funcionarios')
+  const a = await res.data
+
+ data = a.fornecedores;
+ console.log(data)
+}
+tabela()
 const now = new Date();
 
-const data = [
-  
-  {
-    id: '5e8877da9a65442b11551975',
-    address: {
-      city: 'Murray',
-      country: 'USA',
-      state: 'Utah',
-      street: '3934  Wildrose Lane'
-    },
-    avatar: '/assets/avatars/avatar-iulia-albu.png',
-    createdAt: subDays(subHours(now, 8), 6).getTime(),
-    email: 'iulia.albu@devias.io',
-    name: 'Iulia Albu',
-    phone: '313-812-8947',
-    cpf:'222.222.222-22'
-  }
-];
+
 
 const useCustomers = (page, rowsPerPage) => {
   return useMemo(
@@ -49,8 +43,9 @@ const useCustomerIds = (customers) => {
     [customers]
   );
 };
-
+tabela()
 const Page = () => {
+  tabela()
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const customers = useCustomers(page, rowsPerPage);

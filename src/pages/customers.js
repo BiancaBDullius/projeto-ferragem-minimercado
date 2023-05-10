@@ -10,24 +10,19 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/customers-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
+import axios from 'axios'
 
+let data = []
+
+const produtoestoque = async () =>{
+  const res = await axios.get('https://trabalho-pbd.herokuapp.com/clientes')
+  const a = await res.data;
+
+ data = a.clientes;
+}
 const now = new Date();
 
-const data = [{
-  "name": "Edson Giovanni Galvão",
-  "cpf": "07814953006",
-  "phone": "6527625828",
-  "endereco": "Rua Neide Luiza Bastos Vieira",
-  "tem_compra_nao_paga": true
-},
-{
-  "name": "Eliane Gabriela da Luz",
-  "cpf": "60785437762",
-  "phone": "6637323193",
-  "endereco": "Avenida da Matrinchã",
-  "tem_compra_nao_paga": false
-},
-];
+produtoestoque();
 
 const useCustomers = (page, rowsPerPage) => {
   return useMemo(
@@ -48,6 +43,7 @@ const useCustomerIds = (customers) => {
 };
 
 const Page = () => {
+  produtoestoque()
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const customers = useCustomers(page, rowsPerPage);
@@ -66,7 +62,7 @@ const Page = () => {
     },
     []
   );
-
+  produtoestoque();
   return (
     <>
       <Head>

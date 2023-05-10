@@ -15,7 +15,6 @@ import {
   Typography
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
-import { getInitials } from 'src/utils/get-initials';
 
 export const CustomersTable = (props) => {
   const {

@@ -6,20 +6,18 @@ import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/vendas-table';
 import { applyPagination } from 'src/utils/apply-pagination';
+import axios from 'axios'
 
+let data = [];
+
+const tabela = async () =>{
+  const res = await axios.get('https://trabalho-pbd.herokuapp.com/vendas')
+  const a = await res.data
+
+ data = a.vendas;
+}
+tabela()
 const now = new Date();
-
-const data = [
-  
-  {
-    
-    cliente: 'Bianca Dullius',
-    vendedor: 'Bianca Beppler',
-    valor: '312',
-    data_venda:'02-05-2023',
-    status:true,
-  }
-];
 
 const useCustomers = (page, rowsPerPage) => {
   return useMemo(
@@ -38,9 +36,11 @@ const useCustomerIds = (customers) => {
     [customers]
   );
 };
+tabela()
 
 const Page = () => {
-  const [page, setPage] = useState(0);
+tabela()
+const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const customers = useCustomers(page, rowsPerPage);
   const customersIds = useCustomerIds(customers);

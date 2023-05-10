@@ -8,59 +8,52 @@ import { OverviewLatestProducts } from 'src/sections/overview/overview-latest-pr
 import { OverviewSales } from 'src/sections/overview/overview-sales';
 import { OverviewTotalCustomers } from 'src/sections/overview/overview-total-customers';
 import { OverviewTotalProfit } from 'src/sections/overview/overview-total-profit';
-
-
-const now = new Date();
-let aa = 0;
-const teste = async () =>{
-
-   aa = 18;
+import axios from 'axios'
+let lucroDoDia = 0;
+let clientesNoDia = 0;
+let vendasNoMes = {
+  valor: 0,
+  diferenca: 0,
+  positivo: true
 }
- teste();
+let produtos = [];
+let ultimasVendas = [];
 
 
-const Page = () =>{ 
-  const valoresAnuais = [
-    {
-      name: 'Valor em vendas',
-      data: [aa, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 13]
-    }
-  ];
-  const lucroDoDia = 20;
-  const clientesNoDia = 2;
-
-  const produtos = [
-    {
-     produto_codigo: '5ece2c077e39da27658aa8a9',
-      image: '/assets/products/product-1.png',
-      nome: 'Healthcare Erbology',
-      sum: 100
-    }
-  ];
-  const ultimasVendas = [
-    {
-      "nota_fiscal": "1",
-      "data_venda": "2023-05-10T03:00:00.000Z",
-      "valor": "200.00",
-      "status": false,
-      "cliente": "Edson Giovanni Galvão",
-      "vendedor": "Mateus Calebe Francisco Moreira"
-    },
-    {
-      "nota_fiscal": "2",
-      "data_venda": "2023-05-10T03:00:00.000Z",
-      "valor": "120.00",
-      "status": true,
-      "cliente": "Eliane Gabriela da Luz",
-      "vendedor": "Regina Vitória Vanessa Duarte"
-    }
-  ];
-
-  const vendasNoMes = {
-    valor: 200,
-    diferenca: 14,
-    positivo: true
+let valoresAnuais = [
+  {
+    name: 'Valor em vendas',
+    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   }
+];
+
+const dash = async () =>{
+  const res = await axios.get('https://trabalho-pbd.herokuapp.com/dashboard')
+  const data = await res.data
+
+ lucroDoDia = data.lucroDia;
+ clientesNoDia  = data.clientesNoDia;
+ vendasNoMes.valor = data.vendasNoMes.valor;
+
+ const res1 = await axios.get('https://trabalho-pbd.herokuapp.com/tabela-anual')
+ const data1 = await res1.data
+
+valoresAnuais[0].data = data1.values;
+}
+
+
+
+
+ dash();
+const Page = () =>{ 
+  dash()
+
+  
+ 
+
+  
+
+ 
 
 
   return (
@@ -152,10 +145,12 @@ const Page = () =>{
   </>
 );
 }
-Page.getLayout = (page) => (
+Page.getLayout = (page) => { 
+  dash();
+  return (
   <DashboardLayout>
     {page}
   </DashboardLayout>
-);
+)};
 
 export default Page;

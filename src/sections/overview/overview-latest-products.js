@@ -10,10 +10,21 @@ import {
   ListItemAvatar,
   ListItemText
 } from '@mui/material';
+import axios from 'axios'
 
+let products = []
+
+const produtoestoque = async () =>{
+  const res = await axios.get('https://trabalho-pbd.herokuapp.com/produto-estoque')
+  const data = await res.data;
+
+ products = data.estoque;
+}
+
+produtoestoque()
 export const OverviewLatestProducts = (props) => {
-  const { products = [], sx } = props;
-
+  const { sx } = props;
+produtoestoque()
   return (
     <Card sx={sx}>
       <CardHeader title="Mais vendidos" />

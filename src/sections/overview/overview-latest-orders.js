@@ -17,14 +17,26 @@ import {
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { SeverityPill } from 'src/components/severity-pill';
+import axios from 'axios'
 
 const statusMap = {
   pago: 'success',
   pendente: 'error'
 };
+let orders = [];
 
+const vendas = async () =>{
+  const res = await axios.get('https://trabalho-pbd.herokuapp.com/vendas')
+  const data = await res.data;
+
+  orders= data.vendas;
+ console.log(orders)
+}
+
+vendas();
 export const OverviewLatestOrders = (props) => {
-  const { orders = [], sx } = props;
+  const {  sx } = props;
+vendas();
 
   return (
     <Card sx={sx}>

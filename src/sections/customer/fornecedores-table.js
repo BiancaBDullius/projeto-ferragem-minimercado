@@ -51,7 +51,7 @@ export const CustomersTable = (props) => {
                 return (
                   <TableRow
                     hover
-                    key={customer.cpf}
+                    key={customer.cnpj}
                     
                   >
                   
@@ -68,7 +68,7 @@ export const CustomersTable = (props) => {
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.cpf}
+                      {customer.cnpj}
                     </TableCell>
                     <TableCell>
                       {customer.phone}
